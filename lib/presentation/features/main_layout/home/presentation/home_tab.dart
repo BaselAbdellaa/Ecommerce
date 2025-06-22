@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:ecommerce_app/di/di.dart';
+import 'package:ecommerce_app/presentation/features/main_layout/home/presentation/home_view_model.dart';
 import 'package:ecommerce_app/presentation/features/main_layout/home/presentation/widgets/custom_category_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import 'widgets/custom_ads_widget.dart';
@@ -28,6 +31,7 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
     _startImageSwitching();
+    homeViewModel.getCategories();
   }
 
   void _startImageSwitching() {
@@ -44,6 +48,8 @@ class _HomeTabState extends State<HomeTab> {
     super.dispose();
   }
 
+  //field Injection
+  var homeViewModel = getIt.get<HomeViewModel>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -111,7 +117,7 @@ class _HomeTabState extends State<HomeTab> {
               // ),
               SizedBox(height: 12.h),
             ],
-          )
+          ),
         ],
       ),
     );
